@@ -109,7 +109,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="bg-white rounded-2xl shadow-lg p-8 mt-10 w-full max-w-md"
       >
-        <label htmlFor="email" className="block text-sm font-semibold text-slate-700">
+        <label className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.email")}
         </label>
         <input

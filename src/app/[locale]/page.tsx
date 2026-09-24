@@ -14,7 +14,7 @@ export default async function Home() {
         {t("badge")}
       </span>
 
-      <h1 className="text-6xl font-bold text-slate-900 mt-8">{t("title")}</h1>
+      <p className="text-6xl font-bold text-slate-900 mt-8">¿Buscas planes?</p>
 
       <p className="text-lg text-slate-600 max-w-md mt-2">
         {t("subtitle")}

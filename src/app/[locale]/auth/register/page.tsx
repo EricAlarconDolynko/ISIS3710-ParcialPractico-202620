@@ -121,7 +121,7 @@ export default function RegisterPage() {
         onSubmit={handleSubmit}
         className="bg-white rounded-2xl shadow-lg p-8 mt-10 w-full max-w-md"
       >
-        <label htmlFor="username" className="block text-sm font-semibold text-slate-700">
+        <label className="block text-sm font-semibold text-slate-700">
           {t("fields.username")}
         </label>
         <input
@@ -139,7 +139,7 @@ export default function RegisterPage() {
           <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.username}`)}</p>
         )}
 
-        <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mt-4">
+        <label className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.name")}
         </label>
         <input
@@ -157,7 +157,7 @@ export default function RegisterPage() {
           <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.name}`)}</p>
         )}
 
-        <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mt-4">
+        <label className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.email")}
         </label>
         <input
@@ -175,7 +175,7 @@ export default function RegisterPage() {
           <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.email}`)}</p>
         )}
 
-        <label htmlFor="password" className="block text-sm font-semibold text-slate-700 mt-4">
+        <label className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.password")}
         </label>
         <input

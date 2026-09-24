@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Así viene cada plan en la lista que manda el back
 export type PlanSummary = {
