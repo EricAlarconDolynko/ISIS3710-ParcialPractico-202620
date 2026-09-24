@@ -1,0 +1,79 @@
+{
+  "Metadata": {
+    "title": "Planes",
+    "description": "Encuentra planes cerca de ti"
+  },
+  "Header": {
+    "brand": "Planes Parcial",
+    "explore": "Explorar Planes"
+  },
+  "LocaleSwitcher": {
+  "label": "Idioma",
+  "es": "Español",
+  "en": "Inglés"
+  },
+  "UserMenu": {
+    "createPlan": "+ Crear Plan",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión"
+  },
+  "Home": {
+    "badge": "TU CIUDAD, HOY",
+    "title": "¿Buscas planes?",
+    "subtitle": "Encuentra eventos espontáneos, actividades con amigos y nuevas experiencias cerca de ti.",
+    "searchPlaceholder": "Conciertos, cenas, escapadas...",
+    "explore": "Explorar →",
+    "noCommitment": "Sin reservas complicadas ni ataduras"
+  },
+  "Auth": {
+    "fields": {
+      "username": "Usuario",
+      "usernamePlaceholder": "tu_usuario",
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre completo",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "correo@ejemplo.com",
+      "password": "Contraseña"
+    },
+    "login": {
+      "title": "Inicia sesión",
+      "subtitle": "Qué bueno verte de nuevo. Ingresa para ver tus planes.",
+      "submit": "Iniciar sesión"
+    },
+    "register": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Regístrate para descubrir y unirte a nuevos planes.",
+      "submit": "Crear cuenta",
+      "footer": "Es gratis y solo toma un minuto"
+    },
+    "errors": {
+      "invalidCredentials": "Correo o contraseña incorrectos",
+      "registerFailed": "No se pudo crear la cuenta, revisa los datos"
+    }
+  },
+  "Plans": {
+    "title": "Explorar planes",
+    "approxPrice": "Aproximado: {price}"
+  },
+  "PlanDetail": {
+    "loading": "Cargando plan...",
+    "notFound": "Este plan no existe.",
+    "back": "← Volver a planes",
+    "organizedBy": "Organizado por",
+    "likes": "{count, plural, one {like} other {likes}}",
+    "description": "Descripción del plan",
+    "recommendations": "Recomendaciones",
+    "perPerson": "/ persona",
+    "duration": "Duración",
+    "durationValue": "{minutes} min aprox.",
+    "like": "Me gustó",
+    "askHost": "Preguntar al anfitrión",
+    "cancellation": "Cancelación gratuita hasta 24 horas antes del inicio.",
+    "safeTitle": "🛡️ Experiencia segura y garantizada",
+    "safeBody": "Seguro de accidentes incluido para todos los participantes registrados.",
+    "errors": {
+      "likeFailed": "No se pudo dar me gusta a este plan"
+    }
+  }
+}

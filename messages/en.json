@@ -1,0 +1,79 @@
+{
+  "Metadata": {
+    "title": "Plans",
+    "description": "Find plans near you"
+  },
+  "Header": {
+    "brand": "Planes Parcial",
+    "explore": "Explore Plans"
+  },
+  "LocaleSwitcher": {
+  "label": "Language",
+  "es": "Spanish",
+  "en": "English"
+  },
+  "UserMenu": {
+    "createPlan": "+ Create Plan",
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out"
+  },
+  "Home": {
+    "badge": "YOUR CITY, TODAY",
+    "title": "Looking for plans?",
+    "subtitle": "Find spontaneous events, activities with friends and new experiences near you.",
+    "searchPlaceholder": "Concerts, dinners, getaways...",
+    "explore": "Explore →",
+    "noCommitment": "No complicated bookings, no strings attached"
+  },
+  "Auth": {
+    "fields": {
+      "username": "Username",
+      "usernamePlaceholder": "your_username",
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "password": "Password"
+    },
+    "login": {
+      "title": "Log in",
+      "subtitle": "Good to see you again. Log in to see your plans.",
+      "submit": "Log in"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Sign up to discover and join new plans.",
+      "submit": "Create account",
+      "footer": "It's free and only takes a minute"
+    },
+    "errors": {
+      "invalidCredentials": "Incorrect email or password",
+      "registerFailed": "Couldn't create the account, check your details"
+    }
+  },
+  "Plans": {
+    "title": "Explore plans",
+    "approxPrice": "Approx.: {price}"
+  },
+  "PlanDetail": {
+    "loading": "Loading plan...",
+    "notFound": "This plan doesn't exist.",
+    "back": "← Back to plans",
+    "organizedBy": "Organized by",
+    "likes": "{count, plural, one {like} other {likes}}",
+    "description": "Plan description",
+    "recommendations": "Recommendations",
+    "perPerson": "/ person",
+    "duration": "Duration",
+    "durationValue": "approx. {minutes} min",
+    "like": "I liked it",
+    "askHost": "Ask the host",
+    "cancellation": "Free cancellation up to 24 hours before the start.",
+    "safeTitle": "🛡️ Safe and guaranteed experience",
+    "safeBody": "Accident insurance included for all registered participants.",
+    "errors": {
+      "likeFailed": "Couldn't like this plan"
+    }
+  }
+}

@@ -1,12 +1,16 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
+import { formatPrice } from "@/i18n/format";
 import { getPlans } from "@/services/plans";
 
 export default async function PlansPage() {
   const plans = await getPlans();
+  const t = await getTranslations("Plans");
+  const locale = await getLocale();
 
   return (
     <div className="flex-1 bg-slate-50 px-24 py-16">
-      <h1 className="text-5xl font-bold text-slate-900">Explorar planes</h1>
+      <h1 className="text-5xl font-bold text-slate-900">{t("title")}</h1>
 
       <div className="grid grid-cols-4 gap-8 mt-12">
         {plans.map((plan) => (
@@ -36,7 +40,7 @@ export default async function PlansPage() {
             </p>
             <div className="flex justify-between items-center mt-1">
               <p className="text-slate-500">
-                Aproximado: ${plan.estimatedPrice}
+                {t("approxPrice", { price: formatPrice(plan.estimatedPrice, locale) })}
               </p>
               <p className="flex items-center text-slate-500">
                 <svg

@@ -1,20 +1,27 @@
-export default function Home() {
+import { getLocale, getTranslations } from "next-intl/server";
+import { getPathname } from "@/i18n/navigation";
+
+
+export default async function Home() {
+  const locale = await getLocale();
+  const t = await getTranslations("Home");
+  const plansPath = await getPathname({ href: "/plans", locale });
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center bg-slate-50 text-center">
       <span className="bg-blue-100 text-blue-700 text-xs font-bold rounded-full px-4 py-1">
         <span className="w-2 h-2 bg-orange-400 rounded-full inline-block mr-1"></span>
-        TU CIUDAD, HOY
+        {t("badge")}
       </span>
 
-      <h1 className="text-6xl font-bold text-slate-900 mt-8">¿Buscas planes?</h1>
+      <h1 className="text-6xl font-bold text-slate-900 mt-8">{t("title")}</h1>
 
       <p className="text-lg text-slate-600 max-w-md mt-2">
-        Encuentra eventos espontáneos, actividades con amigos y nuevas
-        experiencias cerca de ti.
+        {t("subtitle")}
       </p>
 
       <form
-        action="/plans"
+        action={plansPath}
         className="flex items-center bg-white rounded-full shadow-lg p-2 mt-10 w-full max-w-md"
       >
         <svg
@@ -34,20 +41,19 @@ export default function Home() {
         <input
           type="text"
           name="search"
-          placeholder="Conciertos, cenas, escapadas..."
+          placeholder={t("searchPlaceholder")}
           className="flex-1 px-3 outline-none"
         />
         <button
           type="submit"
           className="bg-blue-600 text-white font-semibold rounded-full px-6 py-2"
         >
-          Explorar →
+          {t("explore")}
         </button>
       </form>
 
       <p className="text-sm text-slate-600 mt-10">
-        <span className="text-green-700">✓</span> Sin reservas complicadas ni
-        ataduras
+        <span className="text-green-700">✓</span> {t("noCommitment")}
       </p>
     </div>
   );
