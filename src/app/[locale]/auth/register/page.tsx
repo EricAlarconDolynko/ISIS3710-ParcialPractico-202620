@@ -1,27 +1,106 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { useRouter } from "@/i18n/navigation";
 import { register } from "@/services/auth";
 import { saveSession } from "@/services/session";
 import { useTranslations } from "next-intl";
 
+
+const fields = ["username", "name", "email", "password"] as const;
+
+type State = {
+  username: string;
+  name: string;
+  email: string;
+  password: string;
+  errors: Record<string, string>;
+};
+
+type Action =
+  | { type: "SET_FIELD"; field: keyof State; value: string }
+  | { type: "SET_ERROR"; field: string; error: string };
+
+const initialState: State = {
+  username: "",
+  name: "",
+  email: "",
+  password: "",
+  errors: {},
+};
+
+function registerReducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "SET_ERROR":
+      return {
+        ...state,
+        errors: { ...state.errors, [action.field]: action.error },
+      };
+    default:
+      return state;
+  }
+}
+
+function validate(field: string, value: string): string {
+  switch (field) {
+    case "username":
+      if (!value.trim()) return "required";
+      return /^[a-zA-Z0-9_]{3,20}$/.test(value) ? "" : "usernameFormat";
+    case "name":
+      if (!value.trim()) return "required";
+      return value.trim().length >= 2 ? "" : "nameMin";
+    case "email":
+      if (!value.trim()) return "required";
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "" : "invalidEmail";
+    case "password":
+      if (!value) return "required";
+      return value.length >= 8 ? "" : "passwordMin";
+    default:
+      return "";
+  }
+}
+
 export default function RegisterPage() {
   const router = useRouter();
   const t = useTranslations("Auth");
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [state, dispatch] = useReducer(registerReducer, initialState);
+  const isValid = fields.every((field) => validate(field, state[field]) === "");
+  // const [username, setUsername] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch({
+      type: "SET_FIELD",
+      field: e.target.name as keyof State,
+      value: e.target.value,
+    });
+  }
+
+  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    dispatch({ type: "SET_ERROR", field: name, error: validate(name, value) });
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+    
+    let hasErrors = false;
+    for (const field of fields) {
+      const code = validate(field, state[field]);
+      dispatch({ type: "SET_ERROR", field, error: code });
+      if (code) hasErrors = true;
+    }
+    if (hasErrors) return;
 
     try {
-      const id = await register(username, email, name, password);
-      saveSession(id, username);
+      const id = await register(state.username, state.email, state.name, state.password);
+      saveSession(id, state.username);
       router.push("/plans");
     } catch (err) {
       setError("registerFailed");
@@ -50,11 +129,15 @@ export default function RegisterPage() {
           type="text"
           name="username"
           placeholder={t("fields.usernamePlaceholder")}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={state.username}
+          onChange={handleChange}
+          onBlur={handleBlur}
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mt-1 outline-none"
         />
+        {state.errors.username && (
+          <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.username}`)}</p>
+        )}
 
         <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.name")}
@@ -64,11 +147,15 @@ export default function RegisterPage() {
           type="text"
           name="name"
           placeholder={t("fields.namePlaceholder")}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={state.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mt-1 outline-none"
         />
+        {state.errors.name && (
+          <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.name}`)}</p>
+        )}
 
         <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.email")}
@@ -78,11 +165,15 @@ export default function RegisterPage() {
           type="email"
           name="email"
           placeholder={t("fields.emailPlaceholder")}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={state.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mt-1 outline-none"
         />
+        {state.errors.email && (
+          <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.email}`)}</p>
+        )}
 
         <label htmlFor="password" className="block text-sm font-semibold text-slate-700 mt-4">
           {t("fields.password")}
@@ -92,17 +183,23 @@ export default function RegisterPage() {
           type="password"
           name="password"
           placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={state.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mt-1 outline-none"
         />
+        {state.errors.password && (
+          <p className="text-sm text-red-600 mt-1">{t(`errors.${state.errors.password}`)}</p>
+        )}
+
 
         {error && <p className="text-sm text-red-600 mt-4">{t(`errors.${error}`)}</p>}
 
         <button
           type="submit"
-          className="w-full bg-blue-700 text-white font-semibold rounded-xl py-4 mt-8"
+          disabled={!isValid}
+          className="w-full bg-blue-700 text-white font-semibold rounded-xl py-4 mt-8 disabled:bg-slate-300 disabled:cursor-not-allowed"
         >
           {t("register.submit")}
         </button>

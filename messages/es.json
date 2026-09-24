@@ -49,7 +49,12 @@
     },
     "errors": {
       "invalidCredentials": "Correo o contraseña incorrectos",
-      "registerFailed": "No se pudo crear la cuenta, revisa los datos"
+      "registerFailed": "No se pudo crear la cuenta, revisa los datos",
+      "required": "Este campo es obligatorio",
+      "invalidEmail": "Correo inválido",
+      "passwordMin": "Mínimo 8 caracteres",
+      "nameMin": "Mínimo 2 caracteres",
+      "usernameFormat": "Entre 3 y 20 caracteres: letras, números o _"
     }
   },
   "Plans": {

@@ -49,7 +49,12 @@
     },
     "errors": {
       "invalidCredentials": "Incorrect email or password",
-      "registerFailed": "Couldn't create the account, check your details"
+      "registerFailed": "Couldn't create the account, check your details",
+      "required": "This field is required",
+      "invalidEmail": "Invalid email",
+      "passwordMin": "At least 8 characters",
+      "nameMin": "At least 2 characters",
+      "usernameFormat": "3 to 20 characters: letters, numbers or _"
     }
   },
   "Plans": {
